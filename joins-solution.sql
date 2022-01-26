@@ -46,7 +46,25 @@ JOIN addresses ON customers.id = addresses.customer_id
 JOIN orders ON orders.address_id = addresses.id
 Group by name;
 
+-- 6. How many customers do we have?
 
+SELECT
+    count(customers.id)
+FROM customers;
+
+--7. How many products do we carry?
+SELECT
+    count(products.id)
+FROM products;
+
+-- 8. What is the total available on-hand quantity of diet pepsi?
+SELECT
+	sum (warehouse_product.on_hand),
+	products.description
+FROM warehouse_product
+JOIN products ON products.id = warehouse_product.product_id
+WHERE products.description = 'diet pepsi'
+GROUP BY products.description;
 
 
 
